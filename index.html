@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		
+		<button onclick='replaceNode()'>Replace node</button>
+		<button onclick='replaceNodeBack()'>Replace node back</button>
+		<div id="app" />
+		<script src="./shk.vdom.js"></script>
+		<script>
+			const node = render('div', { class: 'container' }, [
+				render('h1', { title: 'Virtual DOM' }, 'This is the Virtual DOM'),
+				render('h2', { class: 'description' }, 'This is the description'),
+			])
+			const newNode = render('div', { class: 'container' }, [
+				render(
+					'h2',
+					{ title: 'Virtual DOM' },
+					'This is the Virtual DOM - update one'
+				),
+				
+			])
+
+			mount(node, document.getElementById('app'))
+
+			function replaceNode(){
+				patch(newNode, node)
+			}
+			function replaceNodeBack(){
+				patch(newNode, node )
+			}
+		</script>
+	</body>
+</html>
